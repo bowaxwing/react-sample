@@ -9,14 +9,11 @@ const webpack = require('webpack'),
     };
 
 module.exports = {
-    context: path.join(__dirname, paths.src),
-    entry: {
-        'bundle': './index.js'
-    },
+    entry: ['react-hot-loader/patch', './src/index.js'] ,
 
     output: {
         path: path.join(__dirname, paths.dist),
-        filename: '[name].js'
+        filename: 'bundle.js'
     },
 
     devtool: 'cheap-module-source-map',
@@ -49,7 +46,8 @@ module.exports = {
                 exclude: /node_modules/,
                 query: {
                     cacheDirectory: true,
-                    presets: ['es2015', 'react']
+                    presets: ['es2015', 'react'],
+                    plugins: ['react-hot-loader/babel']
                 }
             }
         ]
