@@ -7,9 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --format 'node_modules/eslint-friendly-formatter' src",
     "clean": "rimraf ./public/*.js && rimraf ./public/map",
-    "dev-server": "webpack-dev-server",
+    "start": "webpack-dev-server",
     "prebuild": "npm run clean",
-    "build": "webpack"
+    "build": "webpack --progress -p"
   },
   "repository": {
     "type": "git",

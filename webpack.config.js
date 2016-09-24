@@ -11,14 +11,12 @@ const webpack = require('webpack'),
 module.exports = {
     context: path.join(__dirname, paths.src),
     entry: {
-        'bundle': './index.js',
-        'bundle.min': './index.js'
+        'bundle': './index.js'
     },
 
     output: {
         path: path.join(__dirname, paths.dist),
-        filename: '[name].js',
-        sourceMapFilename: './map/[file].map'
+        filename: '[name].js'
     },
 
     devtool: 'cheap-module-source-map',
@@ -51,20 +49,18 @@ module.exports = {
                 exclude: /node_modules/,
                 query: {
                     cacheDirectory: true,
-                    presets: ['es2015', 'react'],
-                    plugins: ['react-hot-loader/babel']
+                    presets: ['es2015', 'react']
                 }
             }
         ]
     },
 
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.optimize.UglifyJsPlugin({
-            include: /\.min\.js$/,
-            compressor: {
-                warnings: false
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
             }
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ]
 }
